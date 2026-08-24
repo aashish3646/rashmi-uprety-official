@@ -1,0 +1,199 @@
+@import "tailwindcss" source(none);
+@source "../src";
+
+/*
+ * Rashmi Uprety — editorial design system.
+ * Tokens only. No component-level overrides.
+ */
+
+@theme {
+  /* Palette: warm off-white paper, deep ink, muted clay accent */
+  --color-paper: oklch(0.972 0.008 85);
+  --color-paper-dim: oklch(0.94 0.01 85);
+  --color-ink: oklch(0.185 0.008 60);
+  --color-ink-soft: oklch(0.42 0.008 60);
+  --color-ink-muted: oklch(0.58 0.008 60);
+  --color-rule: oklch(0.86 0.008 75);
+  --color-clay: oklch(0.55 0.075 45);
+  --color-noir: oklch(0.145 0.006 60);
+  --color-noir-soft: oklch(0.24 0.006 60);
+
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Deliberate spacing scale */
+  --spacing-1: 0.5rem;
+  --spacing-2: 0.75rem;
+  --spacing-3: 1rem;
+  --spacing-4: 1.5rem;
+  --spacing-5: 2rem;
+  --spacing-6: 3rem;
+  --spacing-7: 4rem;
+  --spacing-8: 5rem;
+  --spacing-9: 6rem;
+  --spacing-10: 7.5rem;
+  --spacing-11: 10rem;
+
+  --ease-editorial: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+:root {
+  --container: 1360px;
+  --gutter: 1.375rem;
+  --text-display: clamp(2.75rem, 9vw, 6.25rem);
+  --text-title: clamp(1.875rem, 4.4vw, 3.25rem);
+  --text-heading: clamp(1.375rem, 2.4vw, 1.875rem);
+  --text-body: clamp(1rem, 1.05vw, 1.0625rem);
+  --text-meta: 0.6875rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --gutter: 3rem;
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-rule);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--color-clay);
+    outline-offset: 3px;
+  }
+
+  img {
+    display: block;
+  }
+}
+
+@utility container-editorial {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+@utility display-xl {
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: 300;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+}
+
+@utility title-lg {
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  font-weight: 300;
+  line-height: 1.06;
+}
+
+@utility heading-md {
+  font-family: var(--font-display);
+  font-size: var(--text-heading);
+  font-weight: 300;
+  line-height: 1.15;
+}
+
+@utility meta {
+  font-family: var(--font-sans);
+  font-size: var(--text-meta);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+@utility lede {
+  font-size: clamp(1.0625rem, 1.5vw, 1.3125rem);
+  line-height: 1.6;
+  font-weight: 300;
+  color: var(--color-ink-soft);
+}
+
+@utility rule-top {
+  border-top: 1px solid var(--color-rule);
+}
+
+@utility link-underline {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 2px;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 400ms var(--ease-editorial);
+
+  &:hover {
+    background-size: 0% 1px;
+  }
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 700ms var(--ease-editorial),
+    transform 700ms var(--ease-editorial);
+}
+
+@utility reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+@utility img-zoom {
+  transition: transform 700ms var(--ease-editorial);
+
+  &:hover {
+    transform: scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
