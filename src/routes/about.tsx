@@ -39,12 +39,11 @@ function About() {
         <Reveal>
           <EditorialImage
             src={portraitImage}
-            alt="Portrait of Rashmi Uprety in natural window light"
+            alt="Portrait of Rashmi Uprety"
             width={1200}
             height={1500}
             ratio="16 / 9"
             position="50% 22%"
-            caption="Portrait — placeholder photography, to be replaced with Rashmi's own images"
             zoom={false}
           />
         </Reveal>
@@ -86,7 +85,7 @@ function About() {
           <Reveal className="md:col-span-6">
             <EditorialImage
               src={theatreTwo}
-              alt="Rehearsal on a bare stage"
+              alt="Rehearsal on stage"
               width={1200}
               height={1500}
               ratio="3 / 4"
@@ -117,7 +116,7 @@ function About() {
               ))}
             </ul>
             <p className="mt-10 text-ink-muted">
-              Awards, festivals and screen credits will be listed once confirmed.
+              Full screen credits, festival appearances, and awards will be updated here as they are published.
             </p>
           </div>
         </div>
@@ -125,7 +124,7 @@ function About() {
 
       <Section tone="noir" space="md">
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <h2 className="title-lg max-w-[24ch]">Available for theatre, film and television</h2>
+          <h2 className="title-lg max-w-[24ch]">Available for theatre, film and television projects</h2>
           <ButtonLink to="/contact" variant="quiet">
             Send enquiry
           </ButtonLink>

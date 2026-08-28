@@ -11,7 +11,7 @@ import galleryThree from "@/assets/gallery-3.jpg";
 
 const TITLE = "Theatre — Rashmi Uprety";
 const DESCRIPTION =
-  "Theatre archive of Rashmi Uprety: Pratyansha as Senapati and Malami as lead performer, with training at Kadam Theatre, Damak.";
+  "Theatre archive of Rashmi Uprety: Pratyansha as Senapati and Malami as lead performer, trained at Kadam Theatre, Damak.";
 
 export const Route = createFileRoute("/theatre")({
   head: () => ({
@@ -35,14 +35,14 @@ function Theatre() {
       <PageHeader
         eyebrow="Stage"
         title="Theatre"
-        intro="Rashmi's practice is grounded in the stage. She trained at Kadam Theatre in Damak as part of its first batch, and continues to work in performance, mentoring and production support."
+        intro="My artistic practice is deeply grounded in stage performance. I trained at Kadam Theatre in Damak as part of its first batch, and continue to work in performance, mentoring, and production support."
       />
 
       <Section space="sm" bleed>
         <Reveal>
           <img
             src={theatreOne}
-            alt="Performer lit by a single spotlight on a darkened stage"
+            alt="Performer lit by a single spotlight on stage"
             width={1600}
             height={1072}
             loading="lazy"
@@ -77,14 +77,6 @@ function Theatre() {
                     <dt className="meta w-28 shrink-0 text-ink-muted">Association</dt>
                     <dd>{credit.association ?? "—"}</dd>
                   </div>
-                  <div className="flex gap-6 border-t border-rule py-4">
-                    <dt className="meta w-28 shrink-0 text-ink-muted">Director</dt>
-                    <dd className="text-ink-muted">To be confirmed</dd>
-                  </div>
-                  <div className="flex gap-6 border-t border-rule py-4">
-                    <dt className="meta w-28 shrink-0 text-ink-muted">Year</dt>
-                    <dd className="text-ink-muted">—</dd>
-                  </div>
                 </dl>
               </div>
             </Reveal>
@@ -98,8 +90,7 @@ function Theatre() {
             <p className="meta text-paper/45">Kadam Theatre, Damak</p>
             <h2 className="title-lg mt-6">Trained with the first batch</h2>
             <p className="mt-7 max-w-[44ch] text-paper/70">
-              Beyond performing, Rashmi has worked on props, costume, set and stage support, and has
-              taken part in mentoring and workshop activity within the company.
+              Beyond acting, I contribute actively to props, costume design, set and stage support, as well as mentoring and workshop facilitation with the ensemble.
             </p>
             <ButtonLink to="/gallery" variant="quiet" className="mt-9">
               Stage photography

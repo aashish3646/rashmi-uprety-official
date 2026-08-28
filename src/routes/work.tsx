@@ -34,7 +34,7 @@ function Work() {
       <PageHeader
         eyebrow="Archive"
         title="Selected work"
-        intro="A working archive of verified performance credits. Screen credits are being compiled and will be added as they are confirmed."
+        intro="A performance archive of my verified stage roles. My screen credits are currently being compiled and will be added as they are confirmed."
       />
 
       <Section space="md">
@@ -58,10 +58,6 @@ function Work() {
                       <dt className="meta w-24 shrink-0 text-ink-muted">Assoc.</dt>
                       <dd>{credit.association ?? "—"}</dd>
                     </div>
-                    <div className="flex gap-6 border-t border-rule py-3">
-                      <dt className="meta w-24 shrink-0 text-ink-muted">Year</dt>
-                      <dd>—</dd>
-                    </div>
                   </dl>
                 </div>
                 <div className="md:col-span-6 md:col-start-7">
@@ -83,13 +79,12 @@ function Work() {
         <div className="grid gap-8 md:grid-cols-12">
           <p className="meta text-clay md:col-span-3">Film &amp; screen</p>
           <div className="md:col-span-9 lg:col-span-7">
-            <h2 className="title-lg">Screen credits to be announced</h2>
+            <h2 className="title-lg">Screen credits coming soon</h2>
             <p className="lede mt-6">
-              No screen credits are published yet. This section is reserved so that verified film and
-              television work can be listed here.
+              My upcoming film and screen projects will be listed here as official release details are announced.
             </p>
             <ButtonLink to="/contact" variant="outline" className="mt-9">
-              Request current CV
+              Request current portfolio / CV
             </ButtonLink>
           </div>
         </div>

@@ -15,7 +15,7 @@ import galleryThree from "@/assets/gallery-3.jpg";
 
 const TITLE = "Rashmi Uprety — Actor & Theatre Artist";
 const DESCRIPTION =
-  "Portfolio of Rashmi Uprety, a Nepalese actor and theatre artist working across stage and screen, associated with Kadam Theatre, Damak.";
+  "Official portfolio of Rashmi Uprety, a Nepalese actor and theatre artist working across stage and screen, associated with Kadam Theatre, Damak.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -49,7 +49,7 @@ function Home() {
               <p className="mt-6 max-w-[38ch] text-paper/70">{SITE.statement}</p>
               <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
                 <ButtonLink to="/work" variant="quiet">
-                  Explore her work
+                  Explore my work
                 </ButtonLink>
                 <Link
                   to="/theatre"
@@ -63,7 +63,7 @@ function Home() {
             <div className="order-1 lg:order-none lg:col-span-7">
               <EditorialImage
                 src={heroImage}
-                alt="Rashmi Uprety standing in an empty theatre auditorium"
+                alt="Rashmi Uprety standing in an auditorium"
                 width={1600}
                 height={1008}
                 ratio="4 / 5"
@@ -86,12 +86,12 @@ function Home() {
               sharing it.”
             </p>
             <p className="lede mt-8 max-w-[58ch]">
-              Rashmi is a Nepalese actor and theatre artist associated with Kadam Theatre in Damak,
-              where she was part of the first batch. Her work moves between stage and screen, built
+              I am a Nepalese actor and theatre artist associated with Kadam Theatre in Damak,
+              where I was part of the pioneering first batch. My work moves between stage and screen, built
               on character development, dialogue delivery and physical presence.
             </p>
             <Link to="/about" className="meta link-underline mt-8 inline-flex min-h-[44px] items-center text-clay">
-              Read the full profile
+              Read my full profile
             </Link>
           </Reveal>
         </div>
@@ -102,7 +102,7 @@ function Home() {
         <SectionHeader
           eyebrow="Selected work"
           title="Performance across stage and screen"
-          intro="Verified credits only. Screen credits are being compiled and will appear here as they are confirmed."
+          intro="A selection of my stage work. My screen credits are being compiled and will be listed as they are confirmed."
         />
         <div className="mt-14 grid gap-x-8 gap-y-14 md:grid-cols-2 md:mt-20">
           {THEATRE_CREDITS.map((credit, i) => (
@@ -135,7 +135,7 @@ function Home() {
           <Reveal className="md:col-span-5">
             <EditorialImage
               src={portraitImage}
-              alt="Black and white portrait of Rashmi Uprety"
+              alt="Portrait of Rashmi Uprety"
               width={1200}
               height={1500}
               ratio="4 / 5"
@@ -143,7 +143,7 @@ function Home() {
             />
           </Reveal>
           <div className="md:col-span-7 lg:col-span-6 lg:col-start-7">
-            <p className="meta text-clay">Practice</p>
+            <p className="meta text-clay">My Practice</p>
             <h2 className="title-lg mt-6">Craft, trained on stage</h2>
             <ul className="mt-10 grid grid-cols-1 gap-0 sm:grid-cols-2">
               {PRACTICE.map((skill, i) => (
@@ -162,7 +162,7 @@ function Home() {
         <div className="grid gap-6 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-4">
             <p className="meta text-paper/45">Photography</p>
-            <h2 className="title-lg mt-6">Stills</h2>
+            <h2 className="title-lg mt-6">Stills &amp; Portraits</h2>
             <Link to="/gallery" className="meta link-underline mt-8 inline-flex min-h-[44px] items-center">
               View gallery
             </Link>
@@ -193,10 +193,9 @@ function Home() {
         <div className="grid gap-10 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-6">
             <p className="meta text-clay">Showreel</p>
-            <h2 className="title-lg mt-6">Coming soon</h2>
+            <h2 className="title-lg mt-6">In preparation</h2>
             <p className="lede mt-6 max-w-[40ch]">
-              A selected reel is in preparation. Until then, individual scenes can be shared on
-              request.
+              My showreel is currently being assembled. In the meantime, I am happy to share individual scene clips upon request.
             </p>
             <ButtonLink to="/showreel" variant="outline" className="mt-9">
               Showreel details
@@ -204,10 +203,9 @@ function Home() {
           </div>
           <div className="md:col-span-6 md:border-l md:border-rule md:pl-8 lg:pl-14">
             <p className="meta text-clay">Enquiries</p>
-            <h2 className="title-lg mt-6">Casting, theatre &amp; collaboration</h2>
+            <h2 className="title-lg mt-6">Casting &amp; Collaboration</h2>
             <p className="lede mt-6 max-w-[40ch]">
-              For roles, productions, workshops or press, send an enquiry and it will be answered
-              directly.
+              For roles, productions, workshops, or artistic collaborations, feel free to get in touch.
             </p>
             <ButtonLink to="/contact" className="mt-9">
               Send enquiry
