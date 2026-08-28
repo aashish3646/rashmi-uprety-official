@@ -8,7 +8,7 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-5">
             <p className="font-display text-4xl leading-none font-light md:text-5xl">{SITE.name}</p>
-            <p className="meta mt-5 text-paper/55">Actress · Theatre Artist</p>
+            <p className="meta mt-5 text-paper/55">Actor · Theatre Artist</p>
           </div>
 
           <nav aria-label="Footer" className="md:col-span-4">
@@ -28,14 +28,45 @@ export function Footer() {
           </nav>
 
           <div className="md:col-span-3">
-            <p className="meta text-paper/40">Enquiries</p>
-            <p className="mt-5 text-paper/70">
-              Booking and press details are being finalised. Please use the enquiry form.
-            </p>
-            <Link to="/contact" className="meta link-underline mt-5 inline-flex min-h-[44px] items-center">
-              Contact
-            </Link>
-            <p className="meta mt-8 text-paper/40">Social links — to be added</p>
+            <p className="meta text-paper/40">Connect &amp; Social</p>
+            <ul className="mt-5 flex flex-col gap-2">
+              <li>
+                <a
+                  href={SITE.socials.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="meta link-underline inline-flex min-h-[44px] items-center text-paper/80 hover:text-paper"
+                >
+                  Instagram ↗
+                </a>
+              </li>
+              <li>
+                <a
+                  href={SITE.socials.tiktok}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="meta link-underline inline-flex min-h-[44px] items-center text-paper/80 hover:text-paper"
+                >
+                  TikTok ↗
+                </a>
+              </li>
+              <li>
+                <a
+                  href={SITE.socials.youtubeChannel}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="meta link-underline inline-flex min-h-[44px] items-center text-paper/80 hover:text-paper"
+                >
+                  YouTube Channel ↗
+                </a>
+              </li>
+            </ul>
+
+            <div className="mt-8 border-t border-paper/12 pt-6">
+              <Link to="/contact" className="meta link-underline inline-flex min-h-[44px] items-center">
+                Send Enquiry
+              </Link>
+            </div>
           </div>
         </div>
 

@@ -113,12 +113,33 @@ export function Contact() {
                 <dd className="mt-2">{SITE.professions.join(" · ")}</dd>
               </div>
               <div className="border-t border-rule py-5">
-                <dt className="meta text-ink-muted">Email</dt>
-                <dd className="mt-2 text-ink-muted">To be added</dd>
-              </div>
-              <div className="border-t border-rule py-5">
-                <dt className="meta text-ink-muted">Social</dt>
-                <dd className="mt-2 text-ink-muted">To be added</dd>
+                <dt className="meta text-ink-muted">Social Media</dt>
+                <dd className="mt-2 flex flex-col gap-1.5 text-sm">
+                  <a
+                    href={SITE.socials.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-underline text-ink hover:text-clay"
+                  >
+                    Instagram: @rashmi_uprety ↗
+                  </a>
+                  <a
+                    href={SITE.socials.tiktok}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-underline text-ink hover:text-clay"
+                  >
+                    TikTok: @rashmiuprety ↗
+                  </a>
+                  <a
+                    href={SITE.socials.youtubeChannel}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-underline text-ink hover:text-clay"
+                  >
+                    YouTube Channel ↗
+                  </a>
+                </dd>
               </div>
               <div className="border-t border-rule py-5">
                 <dt className="meta text-ink-muted">Website</dt>
@@ -129,7 +150,7 @@ export function Contact() {
             <Reveal className="mt-12 hidden md:block">
               <EditorialImage
                 src={galleryOne}
-                alt="Profile portrait in low light"
+                alt="Profile portrait"
                 width={1200}
                 height={1504}
                 ratio="4 / 5"
@@ -143,8 +164,7 @@ export function Contact() {
               <div className="mt-8 border-t border-rule pt-8">
                 <h2 className="heading-md">Thank you.</h2>
                 <p className="mt-4 max-w-[40ch] text-ink-soft">
-                  Your enquiry has been noted securely. Delivery is being finalised — messages will
-                  be routed directly to Rashmi's verified contact inbox.
+                  Your enquiry has been noted securely. Messages are routed directly to my contact inbox.
                 </p>
               </div>
             ) : (

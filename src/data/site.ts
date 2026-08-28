@@ -10,6 +10,13 @@ export const SITE = {
   ],
   statement:
     "I am a Nepalese actor and theatre artist working across stage and screen, with a practice rooted in character, voice and presence.",
+  socials: {
+    instagram: "https://www.instagram.com/rashmi_uprety",
+    tiktok: "https://www.tiktok.com/@rashmiuprety",
+    youtubeChannel: "https://www.youtube.com/channel/UCgmOJMMkGPSp97WDvGHeieg",
+    featuredVideo: "https://youtu.be/IzliWJkELqU",
+    featuredVideoEmbedId: "IzliWJkELqU",
+  },
 } as const;
 
 export const NAV = [
@@ -63,6 +70,7 @@ export type Credit = {
   role: string;
   association?: string;
   index: string;
+  videoUrl?: string;
 };
 
 export const THEATRE_CREDITS: Credit[] = [
@@ -78,5 +86,15 @@ export const THEATRE_CREDITS: Credit[] = [
     discipline: "Theatre",
     role: "Lead Performer",
     association: "Doksiri Festival",
+  },
+];
+
+export const SCREEN_CREDITS: Credit[] = [
+  {
+    index: "01",
+    title: "Featured Performance",
+    discipline: "Screen / Performance",
+    role: "Actor",
+    videoUrl: "https://youtu.be/IzliWJkELqU",
   },
 ];
