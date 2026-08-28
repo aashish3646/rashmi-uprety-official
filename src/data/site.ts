@@ -2,6 +2,7 @@ export const SITE = {
   name: "Rashmi Uprety",
   role: "Actor · Theatre Artist",
   domain: "rashmiuprety.com.np",
+  email: "rashmiuprety6@gmail.com",
   professions: [
     "Nepalese Actor",
     "Theatre Artist",

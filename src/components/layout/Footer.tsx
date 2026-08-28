@@ -32,6 +32,14 @@ export function Footer() {
             <ul className="mt-5 flex flex-col gap-2">
               <li>
                 <a
+                  href={`mailto:${SITE.email}`}
+                  className="meta link-underline inline-flex min-h-[44px] items-center text-paper hover:text-paper/80"
+                >
+                  {SITE.email}
+                </a>
+              </li>
+              <li>
+                <a
                   href={SITE.socials.instagram}
                   target="_blank"
                   rel="noopener noreferrer"

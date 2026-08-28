@@ -113,6 +113,17 @@ export function Contact() {
                 <dd className="mt-2">{SITE.professions.join(" · ")}</dd>
               </div>
               <div className="border-t border-rule py-5">
+                <dt className="meta text-ink-muted">Direct Email</dt>
+                <dd className="mt-2">
+                  <a
+                    href={`mailto:${SITE.email}`}
+                    className="link-underline text-ink font-medium hover:text-clay"
+                  >
+                    {SITE.email}
+                  </a>
+                </dd>
+              </div>
+              <div className="border-t border-rule py-5">
                 <dt className="meta text-ink-muted">Social Media</dt>
                 <dd className="mt-2 flex flex-col gap-1.5 text-sm">
                   <a
@@ -164,7 +175,7 @@ export function Contact() {
               <div className="mt-8 border-t border-rule pt-8">
                 <h2 className="heading-md">Thank you.</h2>
                 <p className="mt-4 max-w-[40ch] text-ink-soft">
-                  Your enquiry has been noted securely. Messages are routed directly to my contact inbox.
+                  Your enquiry has been noted securely. Messages are routed directly to {SITE.email}.
                 </p>
               </div>
             ) : (
