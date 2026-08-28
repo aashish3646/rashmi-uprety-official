@@ -3,15 +3,22 @@ import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { SectionHeader } from "@/components/SectionHeader";
 import { EditorialImage } from "@/components/EditorialImage";
+import { HeroSlideshow } from "@/components/HeroSlideshow";
 import { ButtonLink } from "@/components/EditorialButton";
 import { Reveal } from "@/components/Reveal";
 import { PRACTICE, SITE, THEATRE_CREDITS } from "@/data/site";
-import heroImage from "@/assets/gallery-2.jpg";
-import portraitImage from "@/assets/portrait.jpg";
-import theatreOne from "@/assets/theatre-1.jpg";
-import theatreTwo from "@/assets/theatre-2.jpg";
-import galleryOne from "@/assets/gallery-1.jpg";
-import galleryThree from "@/assets/gallery-3.jpg";
+
+// Image Imports from assets/Images
+import mainPhoto from "@/assets/Images/Main Photo.jpg";
+import img4724 from "@/assets/Images/IMG_4724.JPG";
+import img4742 from "@/assets/Images/IMG_4742.JPG";
+import img4744 from "@/assets/Images/IMG_4744.JPG";
+import img9578 from "@/assets/Images/IMG_9578.JPG";
+import img9625 from "@/assets/Images/IMG_9625.JPG";
+import dsc07418 from "@/assets/Images/DSC07418.JPG";
+import pmb03283 from "@/assets/Images/PMB03283.jpg";
+import theatreOne from "@/assets/Images/IMG_0534.JPG";
+import theatreTwo from "@/assets/Images/IMG_0564.JPG";
 
 const TITLE = "Rashmi Uprety — Actor & Theatre Artist";
 const DESCRIPTION =
@@ -32,10 +39,19 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
+const HERO_SLIDES = [
+  { src: mainPhoto, alt: "Rashmi Uprety portrait", position: "50% 25%" },
+  { src: img4724, alt: "Rashmi Uprety portrait shoot", position: "center" },
+  { src: img4742, alt: "Rashmi Uprety dramatic lighting", position: "center" },
+  { src: img4744, alt: "Rashmi Uprety editorial portrait", position: "center" },
+  { src: img9625, alt: "Rashmi Uprety stage still", position: "center" },
+  { src: dsc07418, alt: "Rashmi Uprety performance photograph", position: "center" },
+];
+
 function Home() {
   return (
     <>
-      {/* HERO */}
+      {/* HERO WITH AUTO-PLAY SLIDESHOW */}
       <section className="bg-noir text-paper">
         <div className="container-editorial pt-6 pb-14 md:pt-14 md:pb-20">
           <div className="flex flex-col gap-8 lg:grid lg:grid-cols-12 lg:items-end lg:gap-10">
@@ -61,16 +77,7 @@ function Home() {
             </div>
 
             <div className="order-1 lg:order-none lg:col-span-7">
-              <EditorialImage
-                src={heroImage}
-                alt="Rashmi Uprety standing in an auditorium"
-                width={1600}
-                height={1008}
-                ratio="4 / 5"
-                position="60% 40%"
-                priority
-                zoom={false}
-              />
+              <HeroSlideshow slides={HERO_SLIDES} ratio="4 / 5" intervalMs={3500} />
             </div>
           </div>
         </div>
@@ -134,12 +141,12 @@ function Home() {
         <div className="grid gap-12 md:grid-cols-12 md:gap-8">
           <Reveal className="md:col-span-5">
             <EditorialImage
-              src={portraitImage}
+              src={img4744}
               alt="Portrait of Rashmi Uprety"
               width={1200}
               height={1500}
               ratio="4 / 5"
-              position="50% 25%"
+              position="center"
             />
           </Reveal>
           <div className="md:col-span-7 lg:col-span-6 lg:col-start-7">
@@ -164,13 +171,13 @@ function Home() {
             <p className="meta text-paper/45">Photography</p>
             <h2 className="title-lg mt-6">Stills &amp; Portraits</h2>
             <Link to="/gallery" className="meta link-underline mt-8 inline-flex min-h-[44px] items-center">
-              View gallery
+              View full gallery
             </Link>
           </div>
           <Reveal className="md:col-span-4">
             <EditorialImage
-              src={galleryOne}
-              alt="Profile portrait in low light"
+              src={img9578}
+              alt="Portrait photo of Rashmi Uprety"
               width={1200}
               height={1500}
               ratio="3 / 4"
@@ -178,8 +185,8 @@ function Home() {
           </Reveal>
           <Reveal delay={120} className="md:col-span-4 md:mt-16">
             <EditorialImage
-              src={galleryThree}
-              alt="Classical dance hand gesture study"
+              src={pmb03283}
+              alt="Performance still of Rashmi Uprety"
               width={1200}
               height={1200}
               ratio="1 / 1"
@@ -193,12 +200,12 @@ function Home() {
         <div className="grid gap-10 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-6">
             <p className="meta text-clay">Showreel</p>
-            <h2 className="title-lg mt-6">In preparation</h2>
+            <h2 className="title-lg mt-6">Featured Video</h2>
             <p className="lede mt-6 max-w-[40ch]">
-              My showreel is currently being assembled. In the meantime, I am happy to share individual scene clips upon request.
+              Watch my featured screen performance and video reel online.
             </p>
             <ButtonLink to="/showreel" variant="outline" className="mt-9">
-              Showreel details
+              Watch showreel
             </ButtonLink>
           </div>
           <div className="md:col-span-6 md:border-l md:border-rule md:pl-8 lg:pl-14">
