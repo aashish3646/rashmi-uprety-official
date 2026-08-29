@@ -6,6 +6,7 @@ import { Button } from "@/components/EditorialButton";
 import { EditorialImage } from "@/components/EditorialImage";
 import { Reveal } from "@/components/Reveal";
 import { SITE } from "@/data/site";
+import { saveEnquiry } from "@/lib/admin";
 import galleryOne from "@/assets/Images/gallery-1.jpg";
 
 const TITLE = "Contact & Enquiries — Rashmi Uprety";
@@ -100,6 +101,9 @@ export function Contact() {
 
     try {
       localStorage.setItem("last_contact_ts", String(now));
+
+      // Save enquiry to localStorage for admin dashboard
+      saveEnquiry({ name, email, subject, message });
 
       // Construct pre-formatted mailto URL so message is ready in sender's mail client
       const formattedBody = `Hello Rashmi,\n\n${message}\n\n---\nSender: ${name}\nContact Email: ${email}`;
