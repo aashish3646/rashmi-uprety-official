@@ -1,7 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { NAV, SITE } from "@/data/site";
+import { useCms } from "@/hooks/useCms";
 
 export function Footer() {
+  const { email, instagram, tiktok, youtube } = useCms();
+
   return (
     <footer className="bg-noir text-paper">
       <div className="container-editorial py-16 md:py-24">
@@ -32,15 +35,15 @@ export function Footer() {
             <ul className="mt-5 flex flex-col gap-2">
               <li>
                 <a
-                  href={`mailto:${SITE.email}`}
+                  href={`mailto:${email}`}
                   className="meta link-underline inline-flex min-h-[44px] items-center text-paper hover:text-paper/80"
                 >
-                  {SITE.email}
+                  {email}
                 </a>
               </li>
               <li>
                 <a
-                  href={SITE.socials.instagram}
+                  href={instagram}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="meta link-underline inline-flex min-h-[44px] items-center text-paper/80 hover:text-paper"
@@ -50,7 +53,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href={SITE.socials.tiktok}
+                  href={tiktok}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="meta link-underline inline-flex min-h-[44px] items-center text-paper/80 hover:text-paper"
@@ -60,7 +63,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href={SITE.socials.youtubeChannel}
+                  href={youtube}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="meta link-underline inline-flex min-h-[44px] items-center text-paper/80 hover:text-paper"

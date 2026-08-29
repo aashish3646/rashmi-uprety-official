@@ -3,8 +3,9 @@ import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/layout/Section";
 import { EditorialImage } from "@/components/EditorialImage";
 import { Reveal } from "@/components/Reveal";
+import { useCms } from "@/hooks/useCms";
 
-// Import all photos from Images folder
+// Import all default photos from Images folder
 import mainPhoto from "@/assets/Images/Main Photo.jpg";
 import img4724 from "@/assets/Images/IMG_4724.JPG";
 import img4742 from "@/assets/Images/IMG_4742.JPG";
@@ -52,7 +53,7 @@ type Plate = {
   position?: string;
 };
 
-const PLATES: Plate[] = [
+const DEFAULT_PLATES: Plate[] = [
   {
     src: mainPhoto,
     alt: "Rashmi Uprety main portrait",
@@ -196,6 +197,25 @@ const PLATES: Plate[] = [
 ];
 
 function Gallery() {
+  const { photos } = useCms();
+
+  // Convert CMS photos to Plate format
+  const cmsPlates: Plate[] = photos.map((p, idx) => {
+    // Distribute span & aspect ratios dynamically or keep them standard
+    const spans = ["md:col-span-6", "md:col-span-6", "md:col-span-4", "md:col-span-4", "md:col-span-4"];
+    const span = spans[idx % spans.length] || "md:col-span-6";
+    return {
+      src: p.dataUrl,
+      alt: p.caption || p.name,
+      width: 1200,
+      height: 1500,
+      ratio: "4 / 5",
+      span,
+    };
+  });
+
+  const allPlates = [...cmsPlates, ...DEFAULT_PLATES];
+
   return (
     <>
       <PageHeader
@@ -206,7 +226,7 @@ function Gallery() {
 
       <Section space="md">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-8">
-          {PLATES.map((plate, i) => (
+          {allPlates.map((plate, i) => (
             <Reveal key={plate.src + i} className={`${plate.span} ${plate.offset ?? ""}`}>
               <EditorialImage
                 src={plate.src}

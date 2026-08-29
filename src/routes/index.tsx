@@ -6,7 +6,8 @@ import { EditorialImage } from "@/components/EditorialImage";
 import { HeroSlideshow } from "@/components/HeroSlideshow";
 import { ButtonLink } from "@/components/EditorialButton";
 import { Reveal } from "@/components/Reveal";
-import { PRACTICE, SITE, THEATRE_CREDITS } from "@/data/site";
+import { PRACTICE, THEATRE_CREDITS } from "@/data/site";
+import { useCms } from "@/hooks/useCms";
 
 // Image Imports from assets/Images
 import mainPhoto from "@/assets/Images/Main Photo.jpg";
@@ -49,6 +50,18 @@ const HERO_SLIDES = [
 ];
 
 function Home() {
+  const { photos, bio } = useCms();
+  
+  // Dynamic statement from bio or fallback
+  const firstParagraph = typeof bio === "string"
+    ? bio.split("\n").filter((p) => p.trim() !== "")[0]
+    : "I am a Nepalese actor and theatre artist working across stage and screen, with a practice rooted in character, voice and presence.";
+
+  // Use CMS uploaded photos if available
+  const activeSlides = photos.length > 0
+    ? photos.map((p) => ({ src: p.dataUrl, alt: p.caption || "Rashmi Uprety", position: "center" }))
+    : HERO_SLIDES;
+
   return (
     <>
       {/* HERO WITH AUTO-PLAY SLIDESHOW */}
@@ -56,13 +69,13 @@ function Home() {
         <div className="container-editorial pt-6 pb-14 md:pt-14 md:pb-20">
           <div className="flex flex-col gap-8 lg:grid lg:grid-cols-12 lg:items-end lg:gap-10">
             <div className="order-2 lg:order-none lg:col-span-5 lg:pb-6">
-              <p className="meta text-paper/50">{SITE.professions.join(" · ")}</p>
+              <p className="meta text-paper/50">Actor · Theatre Artist · Performer</p>
               <h1 className="display-xl mt-5">
                 Rashmi
                 <br />
                 Uprety
               </h1>
-              <p className="mt-6 max-w-[38ch] text-paper/70">{SITE.statement}</p>
+              <p className="mt-6 max-w-[38ch] text-paper/70">{firstParagraph}</p>
               <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
                 <ButtonLink to="/work" variant="quiet">
                   Explore my work
@@ -77,7 +90,7 @@ function Home() {
             </div>
 
             <div className="order-1 lg:order-none lg:col-span-7">
-              <HeroSlideshow slides={HERO_SLIDES} ratio="4 / 5" intervalMs={3500} />
+              <HeroSlideshow slides={activeSlides} ratio="4 / 5" intervalMs={3500} />
             </div>
           </div>
         </div>

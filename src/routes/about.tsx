@@ -4,7 +4,8 @@ import { Section } from "@/components/layout/Section";
 import { EditorialImage } from "@/components/EditorialImage";
 import { ButtonLink } from "@/components/EditorialButton";
 import { Reveal } from "@/components/Reveal";
-import { BIO, CRAFT_SUPPORT, PRACTICE, TRAINING } from "@/data/site";
+import { TRAINING, PRACTICE, CRAFT_SUPPORT } from "@/data/site";
+import { useCms } from "@/hooks/useCms";
 import portraitImage from "@/assets/Images/portrait.jpg";
 import theatreTwo from "@/assets/Images/theatre-2.jpg";
 
@@ -27,6 +28,11 @@ export const Route = createFileRoute("/about")({
 });
 
 function About() {
+  const { bio } = useCms();
+  const paragraphs = typeof bio === "string" 
+    ? bio.split("\n").filter((p) => p.trim() !== "") 
+    : bio;
+
   return (
     <>
       <PageHeader
@@ -53,7 +59,7 @@ function About() {
         <div className="grid gap-12 md:grid-cols-12 md:gap-8">
           <p className="meta text-clay md:col-span-3">Biography</p>
           <Reveal className="md:col-span-9 lg:col-span-7">
-            {BIO.map((paragraph, i) => (
+            {paragraphs.map((paragraph, i) => (
               <p
                 key={i}
                 className={

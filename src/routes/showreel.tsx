@@ -3,7 +3,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/layout/Section";
 import { ButtonLink } from "@/components/EditorialButton";
 import { Reveal } from "@/components/Reveal";
-import { SITE } from "@/data/site";
+import { useCms } from "@/hooks/useCms";
 
 const TITLE = "Showreel & Performances — Rashmi Uprety";
 const DESCRIPTION =
@@ -24,6 +24,8 @@ export const Route = createFileRoute("/showreel")({
 });
 
 function Showreel() {
+  const { featuredVideoEmbedId, instagram, tiktok, youtube, videos } = useCms();
+
   return (
     <>
       <PageHeader
@@ -37,7 +39,7 @@ function Showreel() {
         <Reveal className="relative overflow-hidden rounded-sm bg-black/40">
           <div className="aspect-video w-full">
             <iframe
-              src={`https://www.youtube.com/embed/${SITE.socials.featuredVideoEmbedId}`}
+              src={`https://www.youtube.com/embed/${featuredVideoEmbedId}`}
               title="Rashmi Uprety - Featured Performance"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
@@ -51,11 +53,11 @@ function Showreel() {
             <p className="meta text-paper/45">Featured Video</p>
             <h2 className="title-lg mt-4 text-paper">Screen &amp; Performance Work</h2>
             <p className="lede mt-6 text-paper/70">
-              Above is one of my recent featured performances. Additional video clips, scene excerpts, and self-tapes are available upon request.
+              Above is one of my recent featured performances. Additional video clips, scene excerpts, and self-tapes are available below and upon request.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <a
-                href={SITE.socials.featuredVideo}
+                href={`https://www.youtube.com/watch?v=${featuredVideoEmbedId}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="meta link-underline inline-flex min-h-[44px] items-center text-paper hover:text-paper/80"
@@ -63,7 +65,7 @@ function Showreel() {
                 Watch on YouTube ↗
               </a>
               <a
-                href={SITE.socials.youtubeChannel}
+                href={youtube}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="meta link-underline inline-flex min-h-[44px] items-center text-paper/70 hover:text-paper"
@@ -78,7 +80,7 @@ function Showreel() {
             <ul className="mt-6 text-paper/75">
               <li className="border-t border-paper/12 py-3">
                 <a
-                  href={SITE.socials.instagram}
+                  href={instagram}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="link-underline text-paper/80 hover:text-paper"
@@ -88,7 +90,7 @@ function Showreel() {
               </li>
               <li className="border-t border-paper/12 py-3">
                 <a
-                  href={SITE.socials.tiktok}
+                  href={tiktok}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="link-underline text-paper/80 hover:text-paper"
@@ -98,7 +100,7 @@ function Showreel() {
               </li>
               <li className="border-t border-paper/12 py-3">
                 <a
-                  href={SITE.socials.youtubeChannel}
+                  href={youtube}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="link-underline text-paper/80 hover:text-paper"
@@ -113,6 +115,35 @@ function Showreel() {
           </div>
         </div>
       </Section>
+
+      {/* Additional Videos List */}
+      {videos.length > 0 && (
+        <Section space="lg">
+          <div className="border-b border-rule pb-6">
+            <p className="meta text-clay">Performance Archive</p>
+            <h2 className="heading-lg mt-2">Additional Video Excerpts</h2>
+          </div>
+          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {videos.map((vid) => (
+              <Reveal key={vid.id} className="group flex flex-col">
+                <div className="relative aspect-video overflow-hidden rounded-sm bg-black/10">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${vid.youtubeId}`}
+                    title={vid.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="h-full w-full border-0"
+                  />
+                </div>
+                <h3 className="heading-md mt-4 text-ink">{vid.title}</h3>
+                {vid.description && (
+                  <p className="mt-2 text-sm text-ink-muted leading-relaxed">{vid.description}</p>
+                )}
+              </Reveal>
+            ))}
+          </div>
+        </Section>
+      )}
     </>
   );
 }
