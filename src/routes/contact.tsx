@@ -6,7 +6,7 @@ import { Button } from "@/components/EditorialButton";
 import { EditorialImage } from "@/components/EditorialImage";
 import { Reveal } from "@/components/Reveal";
 import { SITE } from "@/data/site";
-import galleryOne from "@/assets/gallery-1.jpg";
+import galleryOne from "@/assets/Images/gallery-1.jpg";
 
 const TITLE = "Contact & Enquiries — Rashmi Uprety";
 const DESCRIPTION =

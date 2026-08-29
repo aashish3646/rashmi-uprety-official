@@ -5,9 +5,9 @@ import { EditorialImage } from "@/components/EditorialImage";
 import { ButtonLink } from "@/components/EditorialButton";
 import { Reveal } from "@/components/Reveal";
 import { THEATRE_CREDITS } from "@/data/site";
-import theatreOne from "@/assets/theatre-1.jpg";
-import theatreTwo from "@/assets/theatre-2.jpg";
-import galleryThree from "@/assets/gallery-3.jpg";
+import theatreOne from "@/assets/Images/theatre-1.jpg";
+import theatreTwo from "@/assets/Images/theatre-2.jpg";
+import galleryThree from "@/assets/Images/gallery-3.jpg";
 
 const TITLE = "Theatre — Rashmi Uprety";
 const DESCRIPTION =
