@@ -5,24 +5,24 @@ import { EditorialImage } from "@/components/EditorialImage";
 import { Reveal } from "@/components/Reveal";
 import { useCms } from "@/hooks/useCms";
 
-// Import all default photos from Images folder
-import mainPhoto from "@/assets/Images/Main Photo.jpg";
-import img4724 from "@/assets/Images/IMG_4724.JPG";
-import img4742 from "@/assets/Images/IMG_4742.JPG";
-import img4744 from "@/assets/Images/IMG_4744.JPG";
-import img9578 from "@/assets/Images/IMG_9578.JPG";
-import img9581 from "@/assets/Images/IMG_9581.JPG";
-import img9625 from "@/assets/Images/IMG_9625.JPG";
-import dsc07111 from "@/assets/Images/DSC07111.JPG";
-import dsc07418 from "@/assets/Images/DSC07418.JPG";
-import pmb03283 from "@/assets/Images/PMB03283.jpg";
-import pmb03284 from "@/assets/Images/PMB03284.jpg";
-import pmb04429 from "@/assets/Images/PMB04429.jpg";
-import j9a8103 from "@/assets/Images/_J9A8103.jpg";
-import j9a8111 from "@/assets/Images/_J9A8111.jpg";
-import theatreOne from "@/assets/Images/IMG_0534.JPG";
-import theatreTwo from "@/assets/Images/IMG_0564.JPG";
-import imgWa0005 from "@/assets/Images/IMG-20250913-WA0005.jpg";
+// Import all default photos (optimized WebP)
+import mainPhoto from "@/assets/Images/main-photo.webp";
+import img4724 from "@/assets/Images/IMG_4724.webp";
+import img4742 from "@/assets/Images/IMG_4742.webp";
+import img4744 from "@/assets/Images/IMG_4744.webp";
+import img9578 from "@/assets/Images/IMG_9578.webp";
+import img9581 from "@/assets/Images/IMG_9581.webp";
+import img9625 from "@/assets/Images/IMG_9625.webp";
+import dsc07111 from "@/assets/Images/DSC07111.webp";
+import dsc07418 from "@/assets/Images/DSC07418.webp";
+import pmb03283 from "@/assets/Images/PMB03283.webp";
+import pmb03284 from "@/assets/Images/PMB03284.webp";
+import pmb04429 from "@/assets/Images/PMB04429.webp";
+import j9a8103 from "@/assets/Images/_J9A8103.webp";
+import j9a8111 from "@/assets/Images/_J9A8111.webp";
+import theatreOne from "@/assets/Images/IMG_0534.webp";
+import theatreTwo from "@/assets/Images/IMG_0564.webp";
+import imgWa0005 from "@/assets/Images/IMG-20250913-WA0005.webp";
 
 const TITLE = "Gallery — Rashmi Uprety";
 const DESCRIPTION =

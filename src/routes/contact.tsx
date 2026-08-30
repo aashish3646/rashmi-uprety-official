@@ -7,7 +7,7 @@ import { EditorialImage } from "@/components/EditorialImage";
 import { Reveal } from "@/components/Reveal";
 import { SITE } from "@/data/site";
 import { saveEnquiry } from "@/lib/admin";
-import galleryOne from "@/assets/Images/gallery-1.jpg";
+import galleryOne from "@/assets/Images/DSC07111.webp";
 
 const TITLE = "Contact & Enquiries — Rashmi Uprety";
 const DESCRIPTION =

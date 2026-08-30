@@ -6,8 +6,8 @@ import { ButtonLink } from "@/components/EditorialButton";
 import { Reveal } from "@/components/Reveal";
 import { TRAINING, PRACTICE, CRAFT_SUPPORT } from "@/data/site";
 import { useCms } from "@/hooks/useCms";
-import portraitImage from "@/assets/Images/portrait.jpg";
-import theatreTwo from "@/assets/Images/theatre-2.jpg";
+import portraitImage from "@/assets/Images/main-photo.webp";
+import theatreTwo from "@/assets/Images/IMG_0564.webp";
 
 const TITLE = "About — Rashmi Uprety, Nepalese Actor & Theatre Artist";
 const DESCRIPTION =

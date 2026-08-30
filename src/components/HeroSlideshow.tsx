@@ -49,9 +49,13 @@ export function HeroSlideshow({
               <img
                 src={slide.src}
                 alt={slide.alt}
+                width={1920}
+                height={2400}
                 className="h-full w-full object-cover"
                 style={{ objectPosition: slide.position ?? "center" }}
                 loading={index === 0 ? "eager" : "lazy"}
+                decoding={index === 0 ? "sync" : "async"}
+                fetchPriority={index === 0 ? "high" : "auto"}
               />
             </div>
           );

@@ -9,17 +9,17 @@ import { Reveal } from "@/components/Reveal";
 import { PRACTICE, THEATRE_CREDITS } from "@/data/site";
 import { useCms } from "@/hooks/useCms";
 
-// Image Imports from assets/Images
-import mainPhoto from "@/assets/Images/Main Photo.jpg";
-import img4724 from "@/assets/Images/IMG_4724.JPG";
-import img4742 from "@/assets/Images/IMG_4742.JPG";
-import img4744 from "@/assets/Images/IMG_4744.JPG";
-import img9578 from "@/assets/Images/IMG_9578.JPG";
-import img9625 from "@/assets/Images/IMG_9625.JPG";
-import dsc07418 from "@/assets/Images/DSC07418.JPG";
-import pmb03283 from "@/assets/Images/PMB03283.jpg";
-import theatreOne from "@/assets/Images/IMG_0534.JPG";
-import theatreTwo from "@/assets/Images/IMG_0564.JPG";
+// Image Imports from assets/Images (optimized WebP)
+import mainPhoto from "@/assets/Images/main-photo.webp";
+import img4724 from "@/assets/Images/IMG_4724.webp";
+import img4742 from "@/assets/Images/IMG_4742.webp";
+import img4744 from "@/assets/Images/IMG_4744.webp";
+import img9578 from "@/assets/Images/IMG_9578.webp";
+import img9625 from "@/assets/Images/IMG_9625.webp";
+import dsc07418 from "@/assets/Images/DSC07418.webp";
+import pmb03283 from "@/assets/Images/PMB03283.webp";
+import theatreOne from "@/assets/Images/IMG_0534.webp";
+import theatreTwo from "@/assets/Images/IMG_0564.webp";
 
 const TITLE = "Rashmi Uprety — Actor & Theatre Artist";
 const DESCRIPTION =

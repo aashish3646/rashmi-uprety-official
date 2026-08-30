@@ -5,8 +5,8 @@ import { EditorialImage } from "@/components/EditorialImage";
 import { ButtonLink } from "@/components/EditorialButton";
 import { Reveal } from "@/components/Reveal";
 import { THEATRE_CREDITS } from "@/data/site";
-import theatreOne from "@/assets/Images/theatre-1.jpg";
-import theatreTwo from "@/assets/Images/theatre-2.jpg";
+import theatreOne from "@/assets/Images/IMG_0534.webp";
+import theatreTwo from "@/assets/Images/IMG_0564.webp";
 
 const TITLE = "Work — Rashmi Uprety";
 const DESCRIPTION =
