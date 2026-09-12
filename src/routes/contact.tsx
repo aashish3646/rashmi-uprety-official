@@ -227,19 +227,19 @@ export function Contact() {
 
               {submittedData ? (
                 <div className="mt-8 border-t border-rule/70 pt-8 animate-in fade-in duration-500">
-                  <div className="inline-flex items-center gap-2 rounded-md bg-emerald-50 px-3 py-1.5 text-xs font-medium text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300">
-                    <span>✓</span> Message prepared for dispatch
+                  <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-800 dark:text-emerald-300">
+                    <span>✓</span> Enquiry Prepared
                   </div>
 
                   <h3 className="heading-md mt-4 text-ink">Thank you, {submittedData.name}.</h3>
 
-                  <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-                    Your message details have been saved. Your email application should launch automatically to send the message directly to <span className="font-semibold text-ink">{SITE.email}</span>.
+                  <p className="mt-3 text-sm leading-relaxed text-ink-soft font-light">
+                    Your enquiry details have been saved. Your mail application will launch automatically to dispatch directly to <span className="font-semibold text-ink">{SITE.email}</span>.
                   </p>
 
-                  <div className="mt-6 rounded-sm bg-paper-dim p-4 text-xs">
-                    <p className="meta text-ink-muted">Summary:</p>
-                    <p className="mt-1 font-medium text-ink">Subject: {submittedData.subject}</p>
+                  <div className="mt-6 border border-rule bg-paper-dim p-4 text-xs">
+                    <p className="meta text-ink-muted">Enquiry Summary:</p>
+                    <p className="mt-1 font-serif text-base text-ink">Subject: {submittedData.subject}</p>
                     <p className="mt-1 text-ink-soft truncate">From: {submittedData.email}</p>
                   </div>
 
@@ -248,7 +248,7 @@ export function Contact() {
                       href={submittedData.mailtoUrl}
                       className="meta inline-flex min-h-[44px] items-center justify-center gap-2 bg-ink px-6 text-paper transition-colors hover:bg-clay"
                     >
-                      Open Email App ↗
+                      Open Email Application ↗
                     </a>
                     <button
                       type="button"
@@ -276,7 +276,7 @@ export function Contact() {
                   {error ? (
                     <div
                       role="alert"
-                      className="mb-6 rounded-sm border border-clay/50 bg-paper-dim p-4 text-xs font-medium tracking-wide text-clay"
+                      className="mb-6 border border-clay/50 bg-paper-dim p-4 text-xs font-medium tracking-wide text-clay"
                     >
                       {error}
                     </div>
@@ -292,7 +292,7 @@ export function Contact() {
                         name="name"
                         required
                         maxLength={100}
-                        placeholder="e.g. Director / Producer"
+                        placeholder="Director / Producer / Casting"
                         autoComplete="name"
                         className={FIELD_INPUT}
                       />
@@ -316,21 +316,21 @@ export function Contact() {
 
                   <div className="mt-6">
                     <label htmlFor="subject" className="meta text-ink-muted">
-                      Subject <span className="text-clay">*</span>
+                      Subject / Project <span className="text-clay">*</span>
                     </label>
                     <input
                       id="subject"
                       name="subject"
                       required
                       maxLength={200}
-                      placeholder="e.g. Casting Enquiry / Production Project"
+                      placeholder="Casting Call / Production Inquiry"
                       className={FIELD_INPUT}
                     />
                   </div>
 
                   <div className="mt-6">
                     <label htmlFor="message" className="meta text-ink-muted">
-                      Message <span className="text-clay">*</span>
+                      Message Details <span className="text-clay">*</span>
                     </label>
                     <textarea
                       id="message"
@@ -338,13 +338,13 @@ export function Contact() {
                       rows={5}
                       required
                       maxLength={3000}
-                      placeholder="Share details about the project, dates, or enquiry..."
+                      placeholder="Share details regarding the production, schedule, or stage role..."
                       className={`${FIELD_INPUT} resize-none`}
                     />
                   </div>
 
                   <Button type="submit" className="mt-8 w-full sm:w-auto" disabled={isSubmitting}>
-                    {isSubmitting ? "Preparing Enquiry..." : "Send Enquiry to Rashmi"}
+                    {isSubmitting ? "Preparing Message..." : "Start a Conversation →"}
                   </Button>
                 </form>
               )}

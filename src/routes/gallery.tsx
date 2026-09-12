@@ -5,7 +5,7 @@ import { EditorialImage } from "@/components/EditorialImage";
 import { Reveal } from "@/components/Reveal";
 import { useCms } from "@/hooks/useCms";
 
-// Import all default photos (optimized WebP)
+// Import default plates (optimized WebP)
 import mainPhoto from "@/assets/Images/main-photo.webp";
 import img4724 from "@/assets/Images/IMG_4724.webp";
 import img4742 from "@/assets/Images/IMG_4742.webp";
@@ -24,9 +24,9 @@ import theatreOne from "@/assets/Images/IMG_0534.webp";
 import theatreTwo from "@/assets/Images/IMG_0564.webp";
 import imgWa0005 from "@/assets/Images/IMG-20250913-WA0005.webp";
 
-const TITLE = "Gallery — Rashmi Uprety";
+const TITLE = "Visual Archive — Rashmi Uprety";
 const DESCRIPTION =
-  "Official photography and stills gallery of Nepalese actor and theatre artist Rashmi Uprety.";
+  "Curated photographic archive, portrait studies, and performance captures of Nepalese actor Rashmi Uprety.";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -50,17 +50,18 @@ type Plate = {
   ratio: string;
   span: string;
   offset?: string;
-  position?: string;
+  caption?: string;
 };
 
 const DEFAULT_PLATES: Plate[] = [
   {
     src: mainPhoto,
-    alt: "Rashmi Uprety main portrait",
+    alt: "Rashmi Uprety editorial portrait plate",
     width: 1600,
     height: 2000,
     ratio: "4 / 5",
     span: "md:col-span-6",
+    caption: "Plate 01 — Editorial Studio Portrait",
   },
   {
     src: img4724,
@@ -70,6 +71,7 @@ const DEFAULT_PLATES: Plate[] = [
     ratio: "4 / 5",
     span: "md:col-span-6",
     offset: "md:mt-12",
+    caption: "Plate 02 — Character Light Study",
   },
   {
     src: img4742,
@@ -78,6 +80,7 @@ const DEFAULT_PLATES: Plate[] = [
     height: 1504,
     ratio: "3 / 4",
     span: "md:col-span-4",
+    caption: "Plate 03 — Portrait Study",
   },
   {
     src: img4744,
@@ -86,6 +89,7 @@ const DEFAULT_PLATES: Plate[] = [
     height: 1504,
     ratio: "3 / 4",
     span: "md:col-span-4",
+    caption: "Plate 04 — Expression Study",
   },
   {
     src: img9578,
@@ -94,14 +98,16 @@ const DEFAULT_PLATES: Plate[] = [
     height: 1504,
     ratio: "3 / 4",
     span: "md:col-span-4",
+    caption: "Plate 05 — Natural Light",
   },
   {
     src: dsc07418,
     alt: "Rashmi Uprety performance photograph",
     width: 1600,
     height: 1072,
-    ratio: "16 / 9",
+    ratio: "21 / 9",
     span: "md:col-span-12",
+    caption: "Plate 06 — Stage Motion & Physicality",
   },
   {
     src: img9581,
@@ -125,7 +131,7 @@ const DEFAULT_PLATES: Plate[] = [
     alt: "Rashmi Uprety performance photo",
     width: 1600,
     height: 1072,
-    ratio: "3 / 2",
+    ratio: "16 / 10",
     span: "md:col-span-7",
   },
   {
@@ -156,10 +162,10 @@ const DEFAULT_PLATES: Plate[] = [
   },
   {
     src: theatreOne,
-    alt: "Rashmi Uprety on stage under spotlight",
+    alt: "Rashmi Uprety stage spotlight",
     width: 1600,
     height: 1072,
-    ratio: "3 / 2",
+    ratio: "16 / 10",
     span: "md:col-span-6",
   },
   {
@@ -167,7 +173,7 @@ const DEFAULT_PLATES: Plate[] = [
     alt: "Rashmi Uprety stage rehearsal",
     width: 1600,
     height: 1072,
-    ratio: "3 / 2",
+    ratio: "16 / 10",
     span: "md:col-span-6",
   },
   {
@@ -199,18 +205,16 @@ const DEFAULT_PLATES: Plate[] = [
 function Gallery() {
   const { photos } = useCms();
 
-  // Convert CMS photos to Plate format
   const cmsPlates: Plate[] = photos.map((p, idx) => {
-    // Distribute span & aspect ratios dynamically or keep them standard
     const spans = ["md:col-span-6", "md:col-span-6", "md:col-span-4", "md:col-span-4", "md:col-span-4"];
-    const span = spans[idx % spans.length] || "md:col-span-6";
     return {
       src: p.dataUrl,
       alt: p.caption || p.name,
       width: 1200,
       height: 1500,
       ratio: "4 / 5",
-      span,
+      span: spans[idx % spans.length] || "md:col-span-6",
+      caption: `Uploaded Plate — ${p.name}`,
     };
   });
 
@@ -219,13 +223,18 @@ function Gallery() {
   return (
     <>
       <PageHeader
-        eyebrow="Photography"
-        title="Gallery"
-        intro="A visual archive of portraits, stage stills, and performance photography."
+        eyebrow="Photographic Archive"
+        title="Visual Contact Sheet"
+        intro="Curated archive of editorial portraits, performance captures, and stage photography."
       />
 
-      <Section space="md">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-8">
+      <Section space="lg">
+        <div className="border-b border-rule pb-6 mb-12 flex items-center justify-between">
+          <p className="meta text-clay">Contact Sheet Archive</p>
+          <span className="meta text-ink-muted">{allPlates.length} Visual Plates</span>
+        </div>
+
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-8">
           {allPlates.map((plate, i) => (
             <Reveal key={plate.src + i} className={`${plate.span} ${plate.offset ?? ""}`}>
               <EditorialImage
@@ -234,7 +243,7 @@ function Gallery() {
                 width={plate.width}
                 height={plate.height}
                 ratio={plate.ratio}
-                position={plate.position ?? "center"}
+                caption={plate.caption}
                 priority={i === 0 || i === 1}
               />
             </Reveal>

@@ -3,11 +3,12 @@ import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/layout/Section";
 import { ButtonLink } from "@/components/EditorialButton";
 import { Reveal } from "@/components/Reveal";
+import { SITE } from "@/data/site";
 import { useCms } from "@/hooks/useCms";
 
-const TITLE = "Showreel & Performances — Rashmi Uprety";
+const TITLE = "Showreel & Moving Image — Rashmi Uprety";
 const DESCRIPTION =
-  "Featured screen performances and video reel of Nepalese actor and theatre artist Rashmi Uprety.";
+  "Official video performance reel and screen archives of Nepalese actor Rashmi Uprety.";
 
 export const Route = createFileRoute("/showreel")({
   head: () => ({
@@ -23,127 +24,86 @@ export const Route = createFileRoute("/showreel")({
   component: Showreel,
 });
 
-function Showreel() {
-  const { featuredVideoEmbedId, instagram, tiktok, youtube, videos } = useCms();
+export function Showreel() {
+  const { videos, featuredVideoId } = useCms();
+  const embedVideoId = featuredVideoId || SITE.socials.featuredVideoEmbedId;
 
   return (
     <>
       <PageHeader
-        eyebrow="Moving image"
-        title="Featured Performance & Reel"
-        intro="Watch my featured screen performance and explore my latest work."
+        eyebrow="Moving Image"
+        title="Showreel &amp; Videos"
+        intro="Screen performance reel, featured video captures, and stage recordings."
       />
 
-      <Section tone="noir" space="lg">
-        {/* Featured Embedded YouTube Video Player */}
-        <Reveal className="relative overflow-hidden rounded-sm bg-black/40">
-          <div className="aspect-video w-full">
+      {/* DOMINANT CINEMATIC VIDEO PLAYER */}
+      <Section space="sm">
+        <Reveal>
+          <div className="overflow-hidden bg-noir aspect-video w-full rounded-none border border-rule shadow-2xl">
             <iframe
-              src={`https://www.youtube.com/embed/${featuredVideoEmbedId}`}
-              title="Rashmi Uprety - Featured Performance"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              src={`https://www.youtube-nocookie.com/embed/${embedVideoId}?autoplay=0&rel=0`}
+              title="Rashmi Uprety Featured Showreel"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-              className="h-full w-full border-0"
+              className="h-full w-full border-none"
             />
           </div>
+          <div className="mt-4 flex items-center justify-between border-b border-rule pb-4 text-sm">
+            <span className="font-serif text-lg text-ink font-light">Featured Reel — Primary Performance</span>
+            <a
+              href={`https://youtu.be/${embedVideoId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="meta link-underline text-clay hover:text-ink"
+            >
+              Watch on YouTube ↗
+            </a>
+          </div>
         </Reveal>
-
-        <div className="mt-14 grid gap-10 md:grid-cols-12 md:gap-8">
-          <div className="md:col-span-6">
-            <p className="meta text-paper/45">Featured Video</p>
-            <h2 className="title-lg mt-4 text-paper">Screen &amp; Performance Work</h2>
-            <p className="lede mt-6 text-paper/70">
-              Above is one of my recent featured performances. Additional video clips, scene excerpts, and self-tapes are available below and upon request.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <a
-                href={`https://www.youtube.com/watch?v=${featuredVideoEmbedId}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="meta link-underline inline-flex min-h-[44px] items-center text-paper hover:text-paper/80"
-              >
-                Watch on YouTube ↗
-              </a>
-              <a
-                href={youtube}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="meta link-underline inline-flex min-h-[44px] items-center text-paper/70 hover:text-paper"
-              >
-                Visit Official Channel ↗
-              </a>
-            </div>
-          </div>
-
-          <div className="md:col-span-5 md:col-start-8">
-            <p className="meta text-paper/45">Social &amp; Channels</p>
-            <ul className="mt-6 text-paper/75">
-              <li className="border-t border-paper/12 py-3">
-                <a
-                  href={instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link-underline text-paper/80 hover:text-paper"
-                >
-                  Instagram @rashmi_uprety ↗
-                </a>
-              </li>
-              <li className="border-t border-paper/12 py-3">
-                <a
-                  href={tiktok}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link-underline text-paper/80 hover:text-paper"
-                >
-                  TikTok @rashmiuprety ↗
-                </a>
-              </li>
-              <li className="border-t border-paper/12 py-3">
-                <a
-                  href={youtube}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link-underline text-paper/80 hover:text-paper"
-                >
-                  YouTube Channel ↗
-                </a>
-              </li>
-            </ul>
-            <ButtonLink to="/contact" variant="quiet" className="mt-8">
-              Request Full Showreel / Footage
-            </ButtonLink>
-          </div>
-        </div>
       </Section>
 
-      {/* Additional Videos List */}
+      {/* ADDITIONAL CMS VIDEOS */}
       {videos.length > 0 && (
         <Section space="lg">
-          <div className="border-b border-rule pb-6">
-            <p className="meta text-clay">Performance Archive</p>
-            <h2 className="heading-lg mt-2">Additional Video Excerpts</h2>
+          <div className="border-b border-rule pb-6 mb-8 flex items-center justify-between">
+            <p className="meta text-clay">Video Index</p>
+            <span className="meta text-ink-muted">{videos.length} Additional Videos</span>
           </div>
-          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {videos.map((vid) => (
-              <Reveal key={vid.id} className="group flex flex-col">
-                <div className="relative aspect-video overflow-hidden rounded-sm bg-black/10">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${vid.youtubeId}`}
-                    title={vid.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="h-full w-full border-0"
-                  />
+
+          <div className="grid gap-10 md:grid-cols-2">
+            {videos.map((vid, i) => (
+              <Reveal key={vid.id} delay={i * 80}>
+                <div className="bg-paper-dim border border-rule p-4">
+                  <div className="aspect-video w-full overflow-hidden bg-noir">
+                    <iframe
+                      src={`https://www.youtube-nocookie.com/embed/${vid.youtubeId}?rel=0`}
+                      title={vid.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="h-full w-full border-none"
+                    />
+                  </div>
+                  <h3 className="heading-md text-ink mt-4">{vid.title}</h3>
+                  {vid.description && <p className="text-ink-soft text-sm mt-1">{vid.description}</p>}
                 </div>
-                <h3 className="heading-md mt-4 text-ink">{vid.title}</h3>
-                {vid.description && (
-                  <p className="mt-2 text-sm text-ink-muted leading-relaxed">{vid.description}</p>
-                )}
               </Reveal>
             ))}
           </div>
         </Section>
       )}
+
+      {/* CASTING INQUIRY */}
+      <Section tone="noir" space="md">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end justify-between">
+          <div>
+            <p className="meta text-paper/40">Direct Booking</p>
+            <h2 className="title-lg text-paper mt-2">Request full audition tapes or screen reels</h2>
+          </div>
+          <ButtonLink to="/contact" variant="quiet">
+            Send Enquiry →
+          </ButtonLink>
+        </div>
+      </Section>
     </>
   );
 }

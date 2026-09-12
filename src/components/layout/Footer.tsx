@@ -1,91 +1,79 @@
 import { Link } from "@tanstack/react-router";
 import { NAV, SITE } from "@/data/site";
-import { useCms } from "@/hooks/useCms";
 
 export function Footer() {
-  const { email, instagram, tiktok, youtube } = useCms();
-
   return (
-    <footer className="bg-noir text-paper">
-      <div className="container-editorial py-16 md:py-24">
-        <div className="grid gap-12 md:grid-cols-12 md:gap-8">
+    <footer className="border-t border-rule bg-paper py-14 md:py-20 text-ink">
+      <div className="container-editorial flex flex-col gap-12">
+        <div className="grid gap-10 md:grid-cols-12 items-start">
           <div className="md:col-span-5">
-            <p className="font-display text-4xl leading-none font-light md:text-5xl">{SITE.name}</p>
-            <p className="meta mt-5 text-paper/55">Actor · Theatre Artist</p>
+            <span className="font-serif text-2xl md:text-3xl uppercase tracking-tight block font-light">
+              {SITE.name}
+            </span>
+            <p className="meta text-clay mt-2">{SITE.role} — Nepal</p>
+            <p className="mt-4 max-w-[36ch] text-ink-soft text-sm font-light leading-relaxed">
+              Associated with Kadam Theatre in Damak, Nepal. Performing across stage and screen with a focus on character, dialogue, and movement.
+            </p>
           </div>
 
-          <nav aria-label="Footer" className="md:col-span-4">
-            <p className="meta text-paper/40">Index</p>
-            <ul className="mt-5 grid grid-cols-2 gap-x-6 gap-y-1 md:grid-cols-1">
+          <div className="md:col-span-3 md:col-start-7">
+            <p className="meta text-ink-muted mb-4">Navigation</p>
+            <ul className="flex flex-col gap-2.5">
               {NAV.map((item) => (
                 <li key={item.to}>
                   <Link
                     to={item.to}
-                    className="link-underline inline-flex min-h-[44px] items-center text-paper/80 hover:text-paper"
+                    className="meta link-underline text-ink-soft hover:text-ink transition-colors"
                   >
                     {item.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </nav>
+          </div>
 
           <div className="md:col-span-3">
-            <p className="meta text-paper/40">Connect &amp; Social</p>
-            <ul className="mt-5 flex flex-col gap-2">
+            <p className="meta text-ink-muted mb-4">Social &amp; Profiles</p>
+            <ul className="flex flex-col gap-2.5 text-sm">
               <li>
                 <a
-                  href={`mailto:${email}`}
-                  className="meta link-underline inline-flex min-h-[44px] items-center text-paper hover:text-paper/80"
-                >
-                  {email}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={instagram}
+                  href={SITE.socials.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="meta link-underline inline-flex min-h-[44px] items-center text-paper/80 hover:text-paper"
+                  className="link-underline text-ink-soft hover:text-ink"
                 >
                   Instagram ↗
                 </a>
               </li>
               <li>
                 <a
-                  href={tiktok}
+                  href={SITE.socials.tiktok}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="meta link-underline inline-flex min-h-[44px] items-center text-paper/80 hover:text-paper"
+                  className="link-underline text-ink-soft hover:text-ink"
                 >
                   TikTok ↗
                 </a>
               </li>
               <li>
                 <a
-                  href={youtube}
+                  href={SITE.socials.youtubeChannel}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="meta link-underline inline-flex min-h-[44px] items-center text-paper/80 hover:text-paper"
+                  className="link-underline text-ink-soft hover:text-ink"
                 >
-                  YouTube Channel ↗
+                  YouTube ↗
                 </a>
               </li>
             </ul>
-
-            <div className="mt-8 border-t border-paper/12 pt-6">
-              <Link to="/contact" className="meta link-underline inline-flex min-h-[44px] items-center">
-                Send Enquiry
-              </Link>
-            </div>
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-3 border-t border-paper/12 pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="meta text-paper/40">
-            © {new Date().getFullYear()} {SITE.name}
-          </p>
-          <p className="meta text-paper/40">{SITE.domain}</p>
+        <div className="flex flex-col sm:flex-row items-center justify-between border-t border-rule/60 pt-8 gap-4 meta text-[11px] text-ink-muted">
+          <p>© {new Date().getFullYear()} {SITE.name}. All rights reserved.</p>
+          <Link to="/admin" className="hover:text-ink transition-colors">
+            Portal Admin →
+          </Link>
         </div>
       </div>
     </footer>
