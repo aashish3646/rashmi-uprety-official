@@ -15,6 +15,36 @@ export type Enquiry = {
 
 const STORAGE_KEY = "admin_enquiries";
 
+// ── Broadcast & Notification System ─────────────────────────
+const BC_NAME = "rashmi_admin_notifications";
+
+export function requestNotificationPermission(): void {
+  if (typeof window !== "undefined" && "Notification" in window) {
+    if (Notification.permission === "default") {
+      void Notification.requestPermission();
+    }
+  }
+}
+
+export function playNotificationSound(): void {
+  try {
+    const ctx = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(587.33, ctx.currentTime); // D5
+    osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15); // A5
+    gain.gain.setValueAtTime(0.15, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.35);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + 0.35);
+  } catch {
+    // Ignore audio autoplay policy restrictions if inactive
+  }
+}
+
 export function saveEnquiry(data: Omit<Enquiry, "id" | "submittedAt" | "read">): Enquiry {
   const enquiry: Enquiry = {
     ...data,
@@ -26,6 +56,18 @@ export function saveEnquiry(data: Omit<Enquiry, "id" | "submittedAt" | "read">):
   const existing = getEnquiries();
   existing.unshift(enquiry); // newest first
   localStorage.setItem(STORAGE_KEY, JSON.stringify(existing));
+
+  // Broadcast event across open tabs
+  try {
+    if (typeof BroadcastChannel !== "undefined") {
+      const bc = new BroadcastChannel(BC_NAME);
+      bc.postMessage({ type: "NEW_ENQUIRY", enquiry });
+      bc.close();
+    }
+  } catch {
+    // Fallback handled via storage event listeners
+  }
+
   return enquiry;
 }
 
@@ -45,13 +87,27 @@ export function markEnquiryRead(id: string): void {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(enquiries));
 }
 
+export function markAllEnquiriesRead(): void {
+  const enquiries = getEnquiries().map((e) => ({ ...e, read: true }));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(enquiries));
+}
+
 export function deleteEnquiry(id: string): void {
   const enquiries = getEnquiries().filter((e) => e.id !== id);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(enquiries));
 }
 
+export function clearAllEnquiries(): void {
+  localStorage.removeItem(STORAGE_KEY);
+}
+
 export function getUnreadCount(): number {
   return getEnquiries().filter((e) => !e.read).length;
+}
+
+export function exportEnquiriesJson(): string {
+  const data = getEnquiries();
+  return JSON.stringify(data, null, 2);
 }
 
 // ─── Admin Auth ────────────────────────────────────────────────

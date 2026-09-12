@@ -1,18 +1,11 @@
-import { useEffect, type ReactNode } from "react";
-import { useNavigate, useRouter } from "@tanstack/react-router";
-import { isAdminAuthenticated, adminLogout } from "@/lib/admin";
+import { useEffect, useState, type ReactNode } from "react";
+import { useNavigate } from "@tanstack/react-router";
+import { isAdminAuthenticated, adminLogout, getUnreadCount } from "@/lib/admin";
 
 type AdminShellProps = {
   children: ReactNode;
   activeSection: "enquiries" | "gallery" | "videos" | "content";
 };
-
-const NAV = [
-  { id: "enquiries" as const, label: "Enquiries", icon: "📬", href: "/admin/dashboard" },
-  { id: "gallery" as const, label: "Gallery", icon: "🖼", href: "/admin/gallery" },
-  { id: "videos" as const, label: "Showreel & Videos", icon: "🎬", href: "/admin/videos" },
-  { id: "content" as const, label: "Content & Links", icon: "✏️", href: "/admin/content" },
-];
 
 const SITE_LINKS = [
   { label: "Home", href: "/" },
@@ -26,12 +19,23 @@ const SITE_LINKS = [
 
 export function AdminShell({ children, activeSection }: AdminShellProps) {
   const navigate = useNavigate();
+  const [unreadCount, setUnreadCount] = useState(0);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     if (!isAdminAuthenticated()) {
       void navigate({ to: "/admin" });
+    } else {
+      setUnreadCount(getUnreadCount());
     }
   }, [navigate]);
+
+  const NAV = [
+    { id: "enquiries" as const, label: "Enquiries", icon: "📬", href: "/admin/dashboard", badge: unreadCount },
+    { id: "gallery" as const, label: "Gallery", icon: "🖼", href: "/admin/gallery" },
+    { id: "videos" as const, label: "Showreel & Videos", icon: "🎬", href: "/admin/videos" },
+    { id: "content" as const, label: "Content & Links", icon: "✏️", href: "/admin/content" },
+  ];
 
   const handleLogout = () => {
     adminLogout();
@@ -40,8 +44,24 @@ export function AdminShell({ children, activeSection }: AdminShellProps) {
 
   return (
     <div className="ash-root">
+      {/* Mobile Topbar */}
+      <div className="ash-mobile-bar md:hidden">
+        <div className="flex items-center gap-3">
+          <div className="ash-logo">
+            <span className="ash-logo-init">RU</span>
+          </div>
+          <span className="font-semibold text-sm text-neutral-200">Admin Portal</span>
+        </div>
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="text-xs uppercase tracking-wider font-semibold px-3 py-1.5 rounded bg-neutral-800 text-neutral-300 border border-neutral-700"
+        >
+          {mobileOpen ? "Close Menu" : "Menu"}
+        </button>
+      </div>
+
       {/* ── Sidebar ── */}
-      <aside className="ash-sidebar">
+      <aside className={`ash-sidebar ${mobileOpen ? "ash-sidebar-open" : ""}`}>
         <div className="ash-sidebar-top">
           <div className="ash-logo">
             <span className="ash-logo-init">RU</span>
@@ -53,7 +73,7 @@ export function AdminShell({ children, activeSection }: AdminShellProps) {
         </div>
 
         <nav className="ash-nav">
-          <p className="ash-nav-label">Manage</p>
+          <p className="ash-nav-label">Management</p>
           {NAV.map((item) => (
             <a
               key={item.id}
@@ -61,11 +81,16 @@ export function AdminShell({ children, activeSection }: AdminShellProps) {
               className={`ash-nav-item${activeSection === item.id ? " ash-active" : ""}`}
             >
               <span className="ash-nav-icon">{item.icon}</span>
-              {item.label}
+              <span className="flex-1">{item.label}</span>
+              {item.badge ? (
+                <span className="px-1.5 py-0.5 text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 rounded-full">
+                  {item.badge}
+                </span>
+              ) : null}
             </a>
           ))}
 
-          <p className="ash-nav-label" style={{ marginTop: "1.5rem" }}>Site Pages</p>
+          <p className="ash-nav-label" style={{ marginTop: "1.5rem" }}>Live Site Preview</p>
           {SITE_LINKS.map((l) => (
             <a
               key={l.href}
@@ -98,6 +123,20 @@ export function AdminShell({ children, activeSection }: AdminShellProps) {
           font-family: 'Inter', system-ui, sans-serif;
           color: #e5e5e5;
         }
+        .ash-mobile-bar {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 56px;
+          background: #111;
+          border-bottom: 1px solid #1e1e1e;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 1rem;
+          z-index: 50;
+        }
         .ash-sidebar {
           width: 240px;
           min-height: 100vh;
@@ -111,6 +150,8 @@ export function AdminShell({ children, activeSection }: AdminShellProps) {
           height: 100vh;
           overflow-y: auto;
           flex-shrink: 0;
+          transition: transform 0.3s ease;
+          z-index: 40;
         }
         .ash-sidebar-top {
           display: flex;
@@ -133,7 +174,7 @@ export function AdminShell({ children, activeSection }: AdminShellProps) {
         .ash-logo-init { font-size: 0.75rem; font-weight: 700; color: #0a0a0a; }
         .ash-name { font-size: 0.85rem; font-weight: 600; color: #f5f5f5; margin: 0; line-height: 1.2; }
         .ash-role { font-size: 0.7rem; color: #555; margin: 0; text-transform: uppercase; letter-spacing: 0.04em; }
-        .ash-nav { flex: 1; display: flex; flex-direction: column; gap: 0.1rem; }
+        .ash-nav { flex: 1; display: flex; flex-direction: column; gap: 0.15rem; }
         .ash-nav-label {
           font-size: 0.65rem;
           font-weight: 700;
@@ -147,7 +188,7 @@ export function AdminShell({ children, activeSection }: AdminShellProps) {
           display: flex;
           align-items: center;
           gap: 0.6rem;
-          padding: 0.55rem 0.75rem;
+          padding: 0.6rem 0.75rem;
           border-radius: 7px;
           font-size: 0.82rem;
           color: #888;
@@ -156,7 +197,7 @@ export function AdminShell({ children, activeSection }: AdminShellProps) {
           width: 100%;
         }
         .ash-nav-item:hover { background: #1a1a1a; color: #e5e5e5; }
-        .ash-active { background: #1e1e1e !important; color: #f5f5f5 !important; }
+        .ash-active { background: #1e1e1e !important; color: #f5f5f5 !important; font-weight: 500; }
         .ash-nav-external { color: #555; }
         .ash-nav-icon { font-size: 0.9rem; flex-shrink: 0; }
         .ash-logout {
@@ -164,17 +205,28 @@ export function AdminShell({ children, activeSection }: AdminShellProps) {
           background: none;
           border: 1px solid #222;
           border-radius: 7px;
-          color: #555;
+          color: #666;
           font-size: 0.78rem;
           padding: 0.55rem;
           cursor: pointer;
           transition: all 0.15s;
           width: 100%;
         }
-        .ash-logout:hover { border-color: #ef4444; color: #ef4444; }
+        .ash-logout:hover { border-color: #ef4444; color: #ef4444; background: #1a0808; }
         .ash-main { flex: 1; display: flex; flex-direction: column; min-width: 0; overflow: hidden; }
-        @media (max-width: 700px) {
-          .ash-sidebar { display: none; }
+        @media (max-width: 768px) {
+          .ash-root { flex-direction: column; padding-top: 56px; }
+          .ash-sidebar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            bottom: 0;
+            height: calc(100vh - 56px);
+            transform: translateX(-100%);
+            width: 260px;
+            box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+          }
+          .ash-sidebar-open { transform: translateX(0); }
         }
       `}</style>
     </div>

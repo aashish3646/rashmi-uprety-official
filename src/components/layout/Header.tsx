@@ -68,8 +68,9 @@ export function Header() {
       role="dialog"
       aria-modal="true"
       aria-label="Site navigation"
-      hidden={!open}
-      className="fixed inset-0 z-50 bg-noir text-paper lg:hidden"
+      className={`fixed inset-0 z-50 bg-noir/95 text-paper backdrop-blur-md lg:hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        open ? "opacity-100 pointer-events-auto translate-y-0" : "opacity-0 pointer-events-none -translate-y-4"
+      }`}
     >
       <div className="container-editorial flex h-full flex-col py-4">
         <div className="flex items-center justify-between">
@@ -77,7 +78,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setOpen(false)}
-            className="meta -mr-3 flex min-h-[44px] min-w-[44px] items-center justify-end px-3"
+            className="meta -mr-3 flex min-h-[44px] min-w-[44px] items-center justify-end px-3 transition-opacity hover:opacity-75"
           >
             Close
           </button>
@@ -89,8 +90,10 @@ export function Header() {
               <li key={item.to} className="border-b border-paper/12">
                 <Link
                   to={item.to}
-                  className="reveal reveal-in flex min-h-[64px] items-baseline gap-5 py-4"
-                  style={{ transitionDelay: `${60 + i * 45}ms` }}
+                  className={`flex min-h-[64px] items-baseline gap-5 py-4 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                    open ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                  }`}
+                  style={{ transitionDelay: open ? `${80 + i * 40}ms` : "0ms" }}
                 >
                   <span className="meta text-paper/45">{String(i + 1).padStart(2, "0")}</span>
                   <span className="font-display text-3xl leading-none font-light sm:text-4xl">
